@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Antrian BAK</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <div class="row">
+    <div class="container" style="text-align: center;">
+      <h1>Antrian BAK</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12" style="text-align: center;">
+      <h2 id="board">1</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s6">
+      <button onclick="decrase()" class="btn-floating btn-large waves-effect waves-light blue" style="float: right;">
+          <i class="large material-icons">navigate_before</i>
+      </button>
+    </div>
+    <div class="col s6">
+      <button onclick="increase()" class="btn-floating btn-large waves-effect waves-light blue">
+          <i class="large material-icons">navigate_next</i>
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    function increase() {
+      var score = document.getElementById("board").textContent
+      score++
+      document.getElementById("board").innerHTML = score
+      readoutLoud(score)
+    }
+
+    function decrase() {
+      var score = document.getElementById("board").textContent
+      if (score > 0) {
+        score--
+        document.getElementById("board").innerHTML = score
+        readoutLoud(score)
+      }
+     
+    }
+
+    function readoutLoud (message) {
+      const speech = new SpeechSynthesisUtterance()
+      speech.text = 'Queue number' + message + " in locket one"
+      speech.volume = 2
+      speech.rate = 0.4
+      speech.pitch = 1
+      window.speechSynthesis.speak(speech)
+    }
+  </script>
+</body>
+
+</html>
